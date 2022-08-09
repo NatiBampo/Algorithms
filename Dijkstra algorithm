@@ -1,0 +1,8 @@
+'''
+Dijkstra algorithm 
+search of the shortest paths in weighted graph from initial vertex to all vertexes
+
+requirements: weights positive numbers
+O(N^2)
+'''
+
