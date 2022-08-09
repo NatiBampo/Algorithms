@@ -1,0 +1,27 @@
+#input number of vertexes and edges
+N, M = map(int, input.split())
+
+#will store graph as a map with sets
+graph = {i:set() for i in range(N)}
+for i in range(M):
+  #read an edge
+  v1, v2 = map(int, input.split()).
+  graph[v1].add(v2)
+  graph[v2].add(v1)
+  
+  
+#will use effective realisation of a queue for Collection framework(double signed list. probably)
+from collections import deque
+distances = [None] * N          #list of distances
+start_vertex = 0                #starting with 0 vertex  
+distances[start_vertex] = 0     #distance to yourself is 0
+queue = deque([start_vertex])   #making a queue
+
+while queue:                            #while queue in not empty
+    cur_v = queue.popleft()             #put out the 1st element
+    for neigh_v in graph[cur_v]:        #get through all of his neighbours
+        if distance[neigh_v] is None:   #if nei is not visited(=> distance is None)
+            distance[neigh_v] = distance[cur_v] + 1     #input read the distance
+            queue.append(neigh_v)       #add to queue to check his neighbours
+            
+print(distances)    #see what happened
