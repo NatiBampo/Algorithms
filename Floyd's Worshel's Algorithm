@@ -1,0 +1,12 @@
+'''
+WARNING!!!! not tested
+type: dinamic
+goal: shortest distance from one to another
+O(n^3)
++++ works with negative weights. but without cycles(++ can detect negative cyclee weight)
+
+'''
+
+
+
+
