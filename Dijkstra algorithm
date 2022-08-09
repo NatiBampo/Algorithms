@@ -1,4 +1,7 @@
 '''
+WARNING!!!
+Not tested!!!!
+
 Dijkstra algorithm 
 search of the shortest paths in weighted graph from initial vertex to all vertexes
 
@@ -6,3 +9,49 @@ requirements: weights positive numbers
 O(N^2)
 '''
 
+def main():
+  G = read_graph()
+  start = input("input start vertex")
+  while start not in G:
+    start = input("No such vertex. Input start vertex")
+  shortest_distances = dijkstra(G, start)
+  finish = input("input end vertex")
+  while start not in G:
+    finish = input("No such vertex. Input end vertex")
+    
+  shortest_path = recover_shortest_path(G, start, finish, shortest_distances)
+
+def read_graph(G):
+  M = int(input())  # M - quantity of edges, further strings "A B weight" 
+  G = {}
+  
+  for i in range(M):
+    a, b, weight= input().split()
+    weight = float(weight)
+    add_edge(G, a, b, weight)
+    add_edge(G, b, a, weight)
+  return G
+
+def add_edge(G, a, b, weight):
+  if a not in G:
+    G[a] = {b : weight}
+  else:
+    G[a][b] = weight
+
+def dijkstra(G, start):
+  Q = deque()       #queue
+  S = {}            #shortest paths
+  S[start] = 0
+  Q.push(start)
+  while Q:
+    v = Q.pop()     #current vertex
+    for u in G[v]:
+      if u not in S or S[v] + G[v][u] < S[u]   #
+        S[u] = S[v] + G[v][u]
+        Q.push(u)      
+  return S
+  
+if __name__ == 'main':
+  main()
+  
+  
