@@ -1,3 +1,12 @@
+'''Can be used for:
+  - selection of bound componets
+  - seach for shortest path 
+  - recovery of shortest path 
+  - search for shortest cycle in oriented graph
+  - find all edges on the shortest path between a pair of vertexes(a, b)
+  - find all vertexes on the shortest path between a pair of vertexes(a, b)
+  - find shortest even path in graph(that is path of even distance)
+
 #input number of vertexes and edges
 N, M = map(int, input.split())
 
