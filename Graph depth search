@@ -1,4 +1,7 @@
-'''Can be used for:
+'''
+O(N+M) - difficulty
+
+Can be used for:
   - selection of bound componets
   - seach for shortest path 
   - recovery of shortest path 
@@ -62,6 +65,104 @@ parent = parents[end_vertex]
 while not parent in None:
    path.append(parent)
    parent = parents[parent]
-path[::-1]  #
+print(path[::-1])  #
+
+
+
+'''chess play as a horse'''
+letters = 'abcdefgh'
+numbers = '12345678'
+
+graph = dict()
+for l in letters:
+  for n in numbers:
+    graph[l+n] = set()
+    
+def add_edge(v1, v2):
+  graph[v1].add(v2)
+  graph[v2].add(v1)
+
+#check borders
+for i in range(8):
+  for j  in range(8):
+    v1 = letters[i] + numbers[j]
+    
+    if 0 <= i + 2 < 8 and 0 <=j + 1 < 8:
+      v2 = letters[i+2] + numbers[j+1]
+      add_edge(v1, v2)
+      
+    if 0 <= i - 2 < 8 and 0 <=j + 1 < 8:
+      v2 = letters[i-2] + numbers[j+1]
+      add_edge(v1, v2)
+    
+    if 0 <= i + 1 < 8 and 0 <=j + 2 < 8:
+      v2 = letters[i-1] + numbers[j+2]
+      add_edge(v1, v2)
+
+    if 0 <= i - 1 < 8 and 0 <=j + 2 < 8:
+      v2 = letters[i-1] + numbers[j+2]
+      add_edge(v1, v2)
+ 
+
+#recovery of the shortest horse path
+
+from collections import deque
+distances = {v: None for v in graph}
+
+start_vertex = 'd4' 
+end_vertex = 'f7'
+
+distances[start_vertex] = 0     
+queue = deque([start_vertex])
+
+parents = {v: None for v in graph}
+
+while queue:
+    cur_v = queue.popleft()
+    for neigh_v in graph[cur_v]:
+        if distance[neigh_v] is None:
+            distance[neigh_v] = distance[cur_v] + 1
+            queue.append(neigh_v)
+            
+path = [end_vertex]
+parent = parents[end_vertex]
+while not parent in None:
+   path.append(parent)
+   parent = parents[parent]
+print(path[::-1])  #show result
+
+
+'''
+recovery of the shortest cycle
+  1. start depth search from each vertex
+  2. once we try to reach visited vertex => found cycle
+  3. start walkthrough from each vertex - select the shortest
+'''
+
+
+'''
+find all vertexes on the shortest path(a,b)
+  1. start depth search from a to b with distance count
+  2. distance from vertex x store as d_a[x] and d_b[x]
+  3. if d_a[x] + d_b[x] = d_a[b] => vertex on the shortest path
+'''
+
+'''
+find all edges on the shortest path(a,b)
+  1. start depth search from a to b with distance count
+  2. distance from vertex x store as d_a[x] and d_b[x]
+  3. for edge (u,v) check d_a[u] + 1 + d_b[v] = d_a[b]
+  4. if equality => edge on the shortest path
+'''
+
+
+'''
+find even path distance
+  1. build assiting graph (each vertex turns into 2 vertexes : e0 and e1)
+  2. each edge (u, v) turns into 2 edges: (u0, u1) and (u1, v0)
+  3. find shortest even path from a to b == find the shortest path in new graph from a0 to b0
+'''
+
+
 
 
