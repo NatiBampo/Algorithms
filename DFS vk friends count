@@ -1,0 +1,65 @@
+'''
+WARNING !!!!
+THIS PROGRAM HASN'T BEEN CHECKED IN REAL LIFE
+''' 
+
+
+import requests as req # do requests
+import time #measure delays
+from tqdm import tqdm # progress bar
+
+HOST = 'https://api.vk.com/method/'
+VERSION = '5.74'
+access_token = 'someweirdsht'
+
+r = req.get(HOST + 'users.get', params={'user_ids': '1646445',
+                                        'access_token': access_token,
+                                        'v': VERSION}
+r.json()['responce'][0]
+
+id_start = 1654987 #some friend
+id_end = 1646445 #me
+
+def get_friends_list(id_user):
+  r = req.get(HOST + 'friends.get', params={'user_ids': '1646445',
+                                        'access_token': access_token,
+                                        'v': VERSION}
+  if 'response' in r,json():
+    return r.json()['response']['items']
+  return []
+  
+print(get_friends_list(1614554)) # exapmle
+
+
+
+from collections import deque
+
+# build the chain of friends
+queue = deque(get_friends_list(id_start))
+
+distances = {user: 1 for user in queue}
+parents = {user: 1614554 for user in queue}
+
+while id_end not in distances:
+  cur_user = queue.popleft()
+  new_users = get_friends_list(cus_user)
+  time.sleep(0.2)
+  for u in tdqm(new_users):
+    if u not in distances:
+      queue.append(u)
+      distances[u] = distances[cur_user] + 1
+      parensts[u] = cur_user
+  
+  
+
+path = [id_end]
+parent = parents[id_end]
+parents[id_start] = None
+
+while not parent in None:
+   path.append(parent)
+   parent = parents[parent]
+print(path[::-1])  #show result  
+  
+  
+  
