@@ -2,11 +2,17 @@
 WARNING!!!! not tested
 type: dinamic
 goal: shortest distance from one to another
+both oriented and not-oriented
 O(n^3)
 +++ works with negative weights. but without cycles(++ can detect negative cyclee weight)
-
+Fij^k  = min( Fij^k-1, Fik^k-1 + Fkj^k-1)
+shoretst path from i vertex to j vertex 
 '''
 
+for k in range(1,n+1):
+  for i in raange(n):
+    for j in range(n):
+      F[k][i][j] = min(F[k-1][i][j], F[k-1][i][k] + F[k-1][k][j])
 
 
 
