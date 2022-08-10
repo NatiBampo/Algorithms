@@ -1,0 +1,16 @@
+'''
+it's only a wishful blueprint. not a realization. just as the rest files=))
+'''
+
+
+class Node:
+  def __init__(self, key, value):
+    self.key = key
+    self.value = value
+    self.left = None
+    self.right = None
+    self.parent = None
+ 
+
+    
+    
