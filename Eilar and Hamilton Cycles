@@ -1,0 +1,16 @@
+'''
+Eilar's cycle
+Cycle walking through each edge of the graph only once
+
+Sign of EG:
+1) bounded
+2) all powers are even
+
+--------------
+
+Hamilton's cycle
+Cycle walking through each vertex of the graph only once
+
+NPfull
+
+'''
